@@ -35,7 +35,7 @@
     _selectionIndicatorHeight = 2.0f;
     _animationDuration = 0.2;
     _autoAdjustSelectionIndicatorWidth = YES;
-    _adjustsButtonTopInset = YES;
+    _adjustsButtonTopInset = NO;
     _font = [UIFont systemFontOfSize:15.0f];
 
     _selectionIndicator = [UIView new];
@@ -49,6 +49,8 @@
     _colors = [NSMutableDictionary new];
     _counts = [NSMutableArray array];
     
+    _buttonTitleInsets = UIEdgeInsetsZero;
+
     _initializing = NO;
 }
 
@@ -116,17 +118,16 @@
     }
     
     [[self buttons] enumerateObjectsUsingBlock:^(UIButton *button, NSUInteger idx, BOOL *stop) {
-        
+       
         CGRect rect = CGRectMake(roundf(self.bounds.size.width/self.numberOfSegments)*idx, 0.0f, roundf(self.bounds.size.width/self.numberOfSegments),
                                  self.bounds.size.height);
         [button setFrame:rect];
+       
+        button.titleEdgeInsets = self.buttonTitleInsets;
         
         if (_adjustsButtonTopInset) {
             CGFloat topInset = (self.barPosition > UIBarPositionBottom) ? -4.0f : 4.0f;
             button.titleEdgeInsets = UIEdgeInsetsMake(0.0f, 0.0f, topInset, 0.0f);
-        }
-        else {
-            button.titleEdgeInsets = UIEdgeInsetsZero;
         }
         
         if (idx == self.selectedSegmentIndex) {

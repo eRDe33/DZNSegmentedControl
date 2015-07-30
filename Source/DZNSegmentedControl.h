@@ -51,8 +51,10 @@
 @property (nonatomic) BOOL showsGroupingSeparators;
 /** YES if the font size should be reduced in order to fit the title string into the segment's width. Default is NO. */
 @property (nonatomic) BOOL adjustsFontSizeToFitWidth;
-/** YES if the button top inset should be adjusted based on bar position (top or bottom). Default is YES. */
+/** YES if the button top inset should be adjusted based on bar position (top or bottom). Default is NO. */
 @property (nonatomic) BOOL adjustsButtonTopInset;
+/** The UIEdgeInsets to be used on buttons titleLabel. Default is UIEdgeInsetsZero.*/
+@property (nonatomic) UIEdgeInsets buttonTitleInsets UI_APPEARANCE_SELECTOR;
 
 /** */
 @property (nonatomic, assign) CGPoint scrollOffset;
